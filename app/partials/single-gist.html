@@ -63,7 +63,18 @@
                 <pre id="editor" editor="{{file.language | lowercase}}">{{file.content}}</pre>
         -->
 
-        <textarea style="display: none" ng-controller="CodeMirrorCtrl" ui-codemirror="{theme:'monokai'}" ng-model="codeMirrorModel"></textarea>
+        <textarea
+            style="display: none"
+            ng-controller="CodeMirrorCtrl"
+            ui-codemirror='{
+            mode: "javascript",
+            lineNumbers: true,
+            matchBrackets: true,
+            theme: "eclipse",
+            value: "lalal"
+            }'
+            ng-model="codeMirrorModel">
+        </textarea>
 
     </div>
 

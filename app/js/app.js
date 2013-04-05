@@ -9,11 +9,3 @@ var myApp = angular.module('myApp', ['ui', 'myApp.filters', 'myApp.services', 'm
         $routeProvider.when('/create', {templateUrl: 'partials/create.html', controller: createGistCtrl});
         $routeProvider.otherwise({redirectTo: '/'});
     }]);
-
-myApp.value('ui.config', {
-    codemirror: {
-        mode: 'javascript',
-        lineNumbers: true,
-        matchBrackets: true
-    }
-});
