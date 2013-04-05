@@ -15,6 +15,10 @@ function singleGistCtrl($scope, $routeParams, $http) {
     });
 }
 
+function CodeMirrorCtrl($scope) {
+    $scope.codeMirrorModel = "var a = [], b, c; a.push('42')";
+}
+
 function commentsGistCtrl($scope, $routeParams, $http) {
     $http.get('http://localhost:3000/gists/comments/' + $routeParams.gistId)
             .success(function(data) {

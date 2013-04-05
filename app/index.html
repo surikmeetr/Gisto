@@ -5,6 +5,8 @@
         <title>Gisto</title>
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" href="css/codemirror.css">
+        <link rel="stylesheet" href="css/angular-ui.css">
     </head>
 
     <body class="ng-cloak">
@@ -34,20 +36,25 @@
         <div class="main flex" role="main" ng-view ng-controller="singleGistCtrl">
         </div>
 
-        <!--SCRIPTS-->
-        <!-- In production use:
-        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
-        -->
         <script src="js/jquery.min.js"></script>
         <script src="js/main.js"></script>
+        <!--
         <script src="lib/ace/ace.js"></script>
-        <script src="lib/angular/angular.js"></script>
+        -->
+        <script src="lib/angular/angular.min.js"></script>
+
+        <script src="js/codemirror.js"></script>
+        <script src="lib/codemirror/mode/javascript/javascript.js"></script>
+
+        <script src="js/angular-ui.js"></script>
         <script src="js/app.js"></script>
         <script src="js/services.js"></script>
         <script src="js/controllers.js"></script>
         <script src="js/filters.js"></script>
         <script src="js/directives.js"></script>
-        <!--        <script src="https://raw.github.com/coreyti/showdown/master/compressed/showdown.js"></script>-->
+        <!--
+        <script src="https://raw.github.com/coreyti/showdown/master/compressed/showdown.js"></script>
+        -->
     </body>
 
 </html>
