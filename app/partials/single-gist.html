@@ -64,16 +64,13 @@
         -->
 
         <textarea
-            style="display: none"
-            ng-controller="CodeMirrorCtrl"
             ui-codemirror='{
             mode: "javascript",
             lineNumbers: true,
             matchBrackets: true,
-            theme: "eclipse",
-            value: "lalal"
+            theme: "eclipse"
             }'
-            ng-model="codeMirrorModel">
+            ng-model="file.content">
         </textarea>
 
     </div>
