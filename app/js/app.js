@@ -2,26 +2,27 @@
 
 // Declare app level module which depends on filters, and services
 angular.module('gisto', [
-        'ui.utils',
-        'gisto.filter.removeTags',
-        'gisto.filter.truncate',
-        'gisto.filter.publicOrPrivet',
-        'gisto.filter.removeTags',
-        'gisto.filter.markDown',
-        'gisto.filter.codeLanguage',
-        'gisto.filter.removeTagSymbol',
-        'gisto.filter.dotToDash',
-        'gisto.directive.scrollTo',
-        'gisto.directive.editor',
-        'gisto.directive.toUrl',
-        'gisto.service.gistData',
-        'gisto.service.requestHandler',
-        'gisto.service.gitHubAPI',
-        'gisto.service.appSettings',
-        'btford.socket-io',
-        'gisto.service.notificationService',
-        'gisto.service.onlineStatusService'
-    ]).
+    'ui.utils',
+    'gisto.filter.removeTags',
+    'gisto.filter.truncate',
+    'gisto.filter.publicOrPrivet',
+    'gisto.filter.removeTags',
+    'gisto.filter.markDown',
+    'gisto.filter.codeLanguage',
+    'gisto.filter.removeTagSymbol',
+    'gisto.filter.dotToDash',
+    'gisto.directive.scrollTo',
+    'gisto.directive.editor',
+    'gisto.directive.toUrl',
+    'gisto.service.gistData',
+    'gisto.service.requestHandler',
+    'gisto.service.gitHubAPI',
+    'gisto.service.appSettings',
+    'gisto.service.toastService',
+    'btford.socket-io',
+    'gisto.service.notificationService',
+    'gisto.service.onlineStatusService'
+]).
     config(['$routeProvider', 'socketProvider', function ($routeProvider, socketProvider) {
 
         // connect to notification server
@@ -61,6 +62,6 @@ angular.module('gisto', [
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-    }]).run(function($rootScope) {
+    }]).run(function ($rootScope) {
         $rootScope.gistoReady = false;
     });
