@@ -319,17 +319,25 @@ div.comments i {
     font-size: 20px;
 }
 
-.messenger {
+.messenger ol {
     display: none;
     padding: 10px;
     font-size: 14px;
     cursor: pointer;
     position: absolute;
-    bottom: 75px;
+    bottom: 65px;
     z-index: 10;
     right: 20px;
+    list-style-type: none;
+}
+
+.messenger ol li {
+    padding: 10px;
+    margin: 10px 0px 0px 0px;
     border-radius: 3px;
-    box-shadow: 1px 1px 5px #000;
+    box-shadow: 0px 0px 10px #555;
+    border: 1px solid #fff;
+    width: 250px;
 }
 
 .login .messenger {
@@ -350,20 +358,20 @@ div.comments i {
     font-size: 14px;
 }
 
-.messenger.info {
+.messenger .info {
     background: #0480BE;
 
 }
 
-.messenger.edit {
+.messenger .edit {
     background: goldenrod;
 }
 
-.messenger.warn {
+.messenger .warn {
     background: #b94a48;
 }
 
-.messenger.ok {
+.messenger .ok {
     background: #468847;
 }
 
@@ -374,6 +382,7 @@ div.comments i {
 .messenger a {
     padding: 0px 3px;
     border-radius: 2px;
+    margin: 0px 5px 0px 0px;
     background: #FFF;
     box-shadow: 1px 1px 1px #555;
     color: #555;
