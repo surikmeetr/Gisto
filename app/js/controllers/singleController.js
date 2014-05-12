@@ -1,6 +1,6 @@
 'use strict';
 
-function singleGistCtrl($scope, $routeParams, gistData, ghAPI, $rootScope, notificationService, appSettings) {
+function singleGistCtrl($scope, $routeParams, gistData, ghAPI, $rootScope, notificationService, appSettings, toastService) {
 
     $scope.gist = gistData.getGistById($routeParams.gistId);
 
@@ -31,7 +31,8 @@ function singleGistCtrl($scope, $routeParams, gistData, ghAPI, $rootScope, notif
     };
 
     $scope.copyToClipboard = function (data, message, type) {
-        message = message || 'Content of a file <b>' + data.filename + '</b> copied to clipboard';
+        toastService.show('info',message,2000);
+        /*message = message || 'Content of a file <b>' + data.filename + '</b> copied to clipboard';
         if (clipboard !== undefined) {
             if (type === 'embed') {
                 clipboard.set('<script src="' + data + '"></script>');
@@ -48,7 +49,7 @@ function singleGistCtrl($scope, $routeParams, gistData, ghAPI, $rootScope, notif
         $('.ok span').html(message);
         setTimeout(function () {
             $('.ok').slideUp();
-        }, 2500);
+        }, 2500);*/
     };
 
     $scope.enableEdit = function (old_obj, old_description) {
@@ -78,6 +79,7 @@ function singleGistCtrl($scope, $routeParams, gistData, ghAPI, $rootScope, notif
     };
 
     $scope.deleteFileConfirm = function (filename) {
+        toastService.show('warn','Are you sure you want to <b>delete</b> ' + filename +' <a href="" data-ng-click="deleteFile(fileToDelete)">Yes!</a><a href="" data-ng-click="cancelDeleteFile()">Cancel</a>');
         $scope.fileToDelete = filename;
         $('.delete-file').slideDown('slow');
     };
