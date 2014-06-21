@@ -83,14 +83,14 @@ angular.module('gisto.directive.editor', []).directive('editor', ['$timeout', 'a
                         }
 
                         // only react to user actions
-                        if (editor.curOp && editor.curOp.command.name) {
+                        //if (editor.curOp && editor.curOp.command.name) {
                             $scope.$apply(function () {
                                 $scope.file.content = editor.getValue();
                                 if (!$scope.edit) {
                                     $scope.enableEdit();
                                 }
                             });
-                        }
+                        //}
                     });
 
                     // listen to ngModel render and update the session
