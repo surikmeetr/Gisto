@@ -93,6 +93,11 @@ body {
     flex-direction: column;
 }
 
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
 .flex-row {
     display: flex;
     flex-direction: row;
@@ -270,7 +275,7 @@ div.main header a .notify span {
 }
 
 div.main img.gravatar {
-    margin: 10px 0 0;
+    margin: 10px 3px 0 0;
     width: 34px;
     height: 34px;
     border-radius: 3px;
@@ -631,7 +636,7 @@ section h1 {
 header input.edaitable {
     margin: 0;
     padding: 5px;
-    width: 50%;
+    width: 100%;
     border-radius: 3px;
 }
 
@@ -795,7 +800,7 @@ details > summary {
 
 .notification ul img {
     float: left;
-    margin: 0px 0px 0px -44px;
+    margin: 0px 0px 0px -44px !important;
     position: absolute;
 }
 

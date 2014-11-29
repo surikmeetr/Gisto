@@ -31,19 +31,14 @@
     </i>
 </a>
 
-<a class="button" data-ng-click="logOut()" title="Log out"><i
-        class="update fa fa-sign-out"></i></a>
-
-<a class="button" onclick="document.location.href = '#/settings'" title="General settings"><i
-        class="settings fa fa-cog"></i></a>
-
-<a class="button settings" data-ng-click="updateGists()"><i class="fa fa-refresh settings gist-update-btn"></i></a>
+<img data-ng-src="{{settings.avatarUrl}}" class="button gravatar" title="{{single.user.login}}"/>
 
 <a class="button" onclick="document.location.href = '#/create'" title="Create new Gist"><i class="create fa fa-file"></i></a>
 
-<a class="button" title="Enterprise mode"></a>
+<a class="button settings" data-ng-click="updateGists()"><i class="fa fa-refresh settings gist-update-btn"></i></a>
 
-<img data-ng-src="{{settings.avatarUrl}}" class="button gravatar" title="{{single.user.login}}"/>
+<a class="button" onclick="document.location.href = '#/settings'" title="General settings"><i class="settings fa fa-cog"></i></a>
 
+<a class="button" data-ng-click="logOut()" title="Log out"><i class="update fa fa-sign-out"></i></a>
 
 

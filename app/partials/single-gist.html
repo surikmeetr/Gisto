@@ -43,7 +43,7 @@
             <input ui-keydown="{'ctrl-83':'update($event)'}" class="edaitable" data-ng-model="gist.description">
         </span>
         <span class="title" data-ng-switch-default>
-            {{(gist.description | removeTags | truncate:80) || 'Untitled'}}
+            {{(gist.description | removeTags) || 'Untitled'}}
         </span>
     </span>
 
