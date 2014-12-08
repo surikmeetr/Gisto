@@ -111,8 +111,10 @@ function hotkeysPager(hotkeys) {
              * Clears the visual selection and resets the currentIndex
              */
             vm.clearSelection = function () {
-                $(items[currentIndex].element).removeClass('focused');
-                currentIndex = -1;
+                if (items[currentIndex]) {
+                    $(items[currentIndex].element).removeClass('focused');
+                    currentIndex = -1;
+                }
             };
 
             /**
