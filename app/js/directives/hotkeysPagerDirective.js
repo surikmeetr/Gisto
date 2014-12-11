@@ -21,10 +21,11 @@ function hotkeysPager(hotkeys) {
              * @param id
              * @param element
              */
-            vm.registerItem = function (id, element) {
+            vm.registerItem = function (id, element, index) {
                 items.push({
                     id: id,
-                    element: element
+                    element: element,
+                    index: index
                 });
             };
 
@@ -42,6 +43,28 @@ function hotkeysPager(hotkeys) {
                 }).forEach(function (item) {
                     items.splice(items.indexOf(item), 1);
                 });
+            };
+
+            /**
+             * Update the index of an element, this happens when angular
+             * is sorting, adding or removing elements thus causing the index
+             * to change
+             *
+             * This is matched on element rather than the old index due to some
+             * discrepancies with reporting from ngRepeat index.
+             * @param element
+             * @param newIndex
+             */
+            vm.updateIndex = function(element, newIndex) {
+                var filteredItems = items.filter(function(item) {
+                   return item.element === element
+                });
+
+                filteredItems.forEach(function(item) {
+                   item.index = newIndex;
+                });
+
+                vm.clearSelection();
             };
 
             /**
@@ -78,13 +101,34 @@ function hotkeysPager(hotkeys) {
             };
 
             /**
+             * Gets the item according to the inner index object instead of array index
+             * @param index
+             * @returns {*}
+             */
+            vm.getItemByIndex = function(index) {
+                var filteredItems = items.filter(function (item) {
+                    return item.index === index;
+                });
+
+                if (filteredItems.length > 0) {
+                    return filteredItems.shift();
+                }
+
+                return null;
+            };
+
+            /**
              * Gets the next available item from the stack
              * If the next item index is larger than the total stack length
              * It will fallback to the start of the stack creating looping selection.
              */
             vm.next = function () {
                 currentIndex = currentIndex < (items.length - 1) ? ++currentIndex : 0;
-                vm.highlightElement(items[currentIndex].element);
+                var item = vm.getItemByIndex(currentIndex);
+
+                if (item) {
+                    vm.highlightElement(item.element);
+                }
             };
 
             /**
@@ -94,7 +138,11 @@ function hotkeysPager(hotkeys) {
              */
             vm.prev = function () {
                 currentIndex = currentIndex > 0 ? --currentIndex : items.length - 1;
-                vm.highlightElement(items[currentIndex].element);
+                var item = vm.getItemByIndex(currentIndex);
+
+                if (item) {
+                    vm.highlightElement(item.element);
+                }
             };
 
             /**
@@ -116,31 +164,6 @@ function hotkeysPager(hotkeys) {
                     currentIndex = -1;
                 }
             };
-
-            /**
-             * Watching for DOM changes of the children of this element
-             * If an item is removed from the DOM it is removed from the stack
-             * This is not done in reverse due to the child directive hotkeysPagerItem
-             * registers itself each time when initialized when a new element
-             * is added back to the DOM.
-             */
-            vm.registerMutationObserver = function () {
-                var observer = new MutationObserver(function (mutations) {
-                    mutations
-                        .filter(function (mutation) {
-                            return mutation.removedNodes.length > 0 && mutation.removedNodes[0].tagName === 'LI';
-                        }).map(function (mutation) {
-                            return mutation.removedNodes[0];
-                        }).forEach(function (element) {
-                            vm.removeItem(element);
-                        });
-                });
-
-                observer.observe($element[0], {childList: true});
-            };
-
-            // Intialize the DOM mutation observer to watch changes
-            vm.registerMutationObserver();
 
             // register hotkey shortcuts
             hotkeys.bindTo($scope)
@@ -174,7 +197,15 @@ function hotkeysPagerItem() {
         require: '^hotkeysPager',
         link: function (scope, element, attrs, ctrl) {
             var id = attrs.hotkeysPagerItem;
-            ctrl.registerItem(id, element);
+            ctrl.registerItem(id, element, scope.$index);
+
+            scope.$watch('$index', function(newIndex) {
+                ctrl.updateIndex(element, newIndex);
+            });
+
+            scope.$on('$destroy', function() {
+               ctrl.removeItem(element);
+            });
         }
     }
 }
