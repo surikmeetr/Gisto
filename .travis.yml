@@ -11,8 +11,8 @@ before_install:
   - sudo apt-get install -y nsis
 
 install:
-  - cd build
+  - cd Gisto/Gisto
   - chmod -x ./build/release.sh
 
-script: ./build/release.sh --all v0.2.6b
+script: ./Gisto/Gisto/build/release.sh --all v0.2.6b
 
