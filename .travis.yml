@@ -5,7 +5,7 @@ node_js:
 # whitelist
 branches:
   only:
-    - travis-ci
+    - feature/travis-ci
 
 before_install:
   - sudo apt-get install -y nsis
