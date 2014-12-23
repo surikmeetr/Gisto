@@ -11,7 +11,8 @@ install:
   - sudo apt-get install -y nsis
 
 after_install:
-  - chmod -x ./build/release.sh
+  - cd build
+  - sudo chmod -x release.sh
 
 script: ./build/release.sh --all v0.2.6b
 
