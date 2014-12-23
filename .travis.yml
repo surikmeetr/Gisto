@@ -12,6 +12,7 @@ before_install:
 
 install:
   - cd build
-  - chmod -x ./release.sh
-  - ./release.sh --all v0.2.6b
+  - chmod -x ./build/release.sh
+
+script: ./build/release.sh --all v0.2.6b
 
