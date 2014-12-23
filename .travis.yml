@@ -7,12 +7,11 @@ branches:
   only:
     - feature/travis-ci
 
-before_install:
+install:
   - sudo apt-get install -y nsis
 
-install:
-  - cd Gisto/Gisto
+after_install:
   - chmod -x ./build/release.sh
 
-script: ./Gisto/Gisto/build/release.sh --all v0.2.6b
+script: ./build/release.sh --all v0.2.6b
 
