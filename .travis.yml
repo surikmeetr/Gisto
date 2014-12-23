@@ -12,7 +12,7 @@ install:
   - sudo apt-get install -y nsis
 
 before_script:
+ - npm install
  - chmod +x ./build/release.sh
 
 script: cd build && ./release.sh --all v0.2.6b
-
