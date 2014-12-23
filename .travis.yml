@@ -9,7 +9,7 @@ branches:
 
 install:
   - npm install gulp bower --global
-  - sudo apt-get install -y nsis
+  - sudo apt-get install -y nsis genisoimage
 
 before_script:
  - npm install
