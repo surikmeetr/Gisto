@@ -2,15 +2,15 @@ language: node_js
 node_js:
   - "0.11"
 
+# whitelist
 branches:
-  except:
-    - master
-    - experimental
+  only:
+    - feature/travis-ci
 
 before_install:
   - sudo apt-get install -y nsis
 
 install:
   - cd build
-  ./release.sh --all v0.2.6b
+  - ./release.sh --all v0.2.6b
 
