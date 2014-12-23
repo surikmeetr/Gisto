@@ -44,7 +44,7 @@ mklinux () {
 mkosx () {
     for arch in ${architechture[@]}; do
         if [[ ! -d "${WORKING_DIR}/libdmg-hfsplus" ]]; then
-            git clone --depth 1 https://github.com/erwint/libdmg-hfsplus ${WORKING_DIR}/libdmg-hfsplus
+            git clone --depth 1 git://github.com/erwint/libdmg-hfsplus ${WORKING_DIR}/libdmg-hfsplus
             cd ${WORKING_DIR}/libdmg-hfsplus && cmake . && make
         fi
         cd ${BUILD_DIR}
