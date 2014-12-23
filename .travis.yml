@@ -13,5 +13,5 @@ install:
 before_script:
  - chmod +x ./build/release.sh
 
-script: ./build/release.sh --all v0.2.6b
+script: cd build && ./release.sh --all v0.2.6b
 
