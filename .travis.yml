@@ -8,7 +8,7 @@ branches:
     - feature/travis-ci
 
 install:
-  - sudo $(which npm) install gulp bower --global
+  - npm install gulp bower --global
   - sudo apt-get install -y nsis
 
 before_script:
