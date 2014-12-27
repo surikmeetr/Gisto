@@ -7,7 +7,7 @@ env:
   - secure: HrCtCbwu8IGmsT5WPrrSH7L0vjslefjq6aMhEfsG6gnB8ykxINV3yMWoJAy61rdvbG8scdEdIUNSbheHzS5cR6ZPd814YdF+M2l1EGctk1z7hEnpRQVh7i+tfeI5zh00Sz5jSdlvUc0iOKcboJWSWW+RpGVStk1yyyca/Kcg8hk=
   - secure: FYWLBoWTPfPe2ybJYrHzQOdY20Q2noOFfwVsYxoqClFpBaiEpYn9tzAHCbGIKgzzazqLky82l+s05Uggp6J8pK2TbT+D0ChWpMsrlOKV6DibinaEKkD1i2eN8dL0VeC4OrU75huobjvHRIvQwO2BrlvExiNj/lw+pmJujrl6J/Y=
   - secure: i4lkhkCZO26UkcTpwdNCZ0t3uqThu++9uVZwW2iHvVSQvurGH9f4dSV5FKbKmoB32jORBYwSuRViWYpU97S39Eybws3VMqO44PqWZGJyTAtnvkRICzeFErHvwSuI/DzSfmb3NxStnxcWLoKsYObw1cQFCuD8SPrAgDjT9efM/VM=
-  - secure: XUcllGRRFUEeK4L2sIbzKnxrIl45hf9a8TPbEAByTHxm10fJ1bNL/UJ76hGjMIFB+1hgO0J0pfNGEbZwov13Lel7tg25UvDyzKf+AU6h61jDw+m41BXNioK4+tfJ+MvpymJSKnIaFa0Wi0MMKfdrbBvpNYUqPFyLWxG4nuEqbDw=
+  - secure: JDFE7RJXf7ipxke+lTkER3kSdwxDp7vxmktFmx8ABIZZfnA3uJl27aZKod695dl9zBFOTLfFyB5OAXD40B2rpaPzOHJBjnO6RgIYo9OclMs348c+4eX0CKZkWH2KcQpV0UbUuuEPRfymG5jkUZw4A7HznxT0t+TS9lYeWauG11c=
 branches:
   only:
   - feature/travis-ci
@@ -15,15 +15,14 @@ install:
 - npm install gulp bower --global
 before_script:
 - npm install
-- gulp
+- gulp version_bump --to=$ENV_VAR_GISTO_VERSION
+- gulp dist
 - chmod +x ./build/script/node-webkit-build.sh
 - export GISTO_TRAVIS_COMMIT_MESSAGE="$(git log --format=%B --no-merges -n 1)"
 - export GISTO_DATE_NOW="$(date +"%Y%m%d")"
-- echo "{"client_id":"$ENV_VAR_GISTO_CLIENT_ID","client_secret":"$ENV_VAR_GISTO_CLIENT_SECRET","server_token":"$ENV_VAR_GISTO_SERVER_TOKEN"}"
+- echo "{\"client_id\":\"$ENV_VAR_GISTO_CLIENT_ID\",\"client_secret\":\"$ENV_VAR_GISTO_CLIENT_SECRET\",\"server_token\":\"$ENV_VAR_GISTO_SERVER_TOKEN\"}"
   >> dist/config.json
 script:
-- gulp version_bump --to=$ENV_VAR_GISTO_VERSION
-- gulp dist
 - "./build/script/node-webkit-build.sh --src=dist --name=gisto --win-icon=app/icon.ico
   --osx-icon=build/resources/osx/gisto.icns --osx-plist=build/resources/osx/Info.plist
   --build"
