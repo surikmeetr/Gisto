@@ -7,7 +7,7 @@ env:
   - secure: HrCtCbwu8IGmsT5WPrrSH7L0vjslefjq6aMhEfsG6gnB8ykxINV3yMWoJAy61rdvbG8scdEdIUNSbheHzS5cR6ZPd814YdF+M2l1EGctk1z7hEnpRQVh7i+tfeI5zh00Sz5jSdlvUc0iOKcboJWSWW+RpGVStk1yyyca/Kcg8hk=
   - secure: FYWLBoWTPfPe2ybJYrHzQOdY20Q2noOFfwVsYxoqClFpBaiEpYn9tzAHCbGIKgzzazqLky82l+s05Uggp6J8pK2TbT+D0ChWpMsrlOKV6DibinaEKkD1i2eN8dL0VeC4OrU75huobjvHRIvQwO2BrlvExiNj/lw+pmJujrl6J/Y=
   - secure: i4lkhkCZO26UkcTpwdNCZ0t3uqThu++9uVZwW2iHvVSQvurGH9f4dSV5FKbKmoB32jORBYwSuRViWYpU97S39Eybws3VMqO44PqWZGJyTAtnvkRICzeFErHvwSuI/DzSfmb3NxStnxcWLoKsYObw1cQFCuD8SPrAgDjT9efM/VM=
-  - secure: s7/NSVcgqk8hBXCO1vKopS1ofrxT4pBUq74JICV1uF+ibMDWjOyRfaJOw5mK4VSdYchZXfxexKyqOBIl52n7dZRwxDPfjFvC05QMSuQPELp2i/57qvbbjJTpkmaindWZuRVyAxn4pQW9P66P2/vwSLUObxPYY2WWAaiIcSasYcY=
+  - secure: clhUMQlk19bYTv5tg4my/q+tWYNlzyW3EFogWALu1plEsREPVAiEL19tcPMTIJHiaJ8UBsU5nRHqwQmYP4ZGXuD8musC8wrw8vjKDz7ASm+BdRJsM+kWBherHYq8UU5VWe00vx7LLqn5Vtz2sffkazXoWUrBYe3Oz/G+z9Uondg=
 branches:
   only:
   - feature/travis-ci
@@ -23,15 +23,9 @@ before_script:
 - echo "{\"client_id\":\"$ENV_VAR_GISTO_CLIENT_ID\",\"client_secret\":\"$ENV_VAR_GISTO_CLIENT_SECRET\",\"server_token\":\"$ENV_VAR_GISTO_SERVER_TOKEN\"}"
   >> dist/config.json
 script:
-- "./build/script/node-webkit-build.sh --src=dist --name=gisto --win-icon=app/icon.ico
-  --osx-icon=build/resources/osx/gisto.icns --osx-plist=build/resources/osx/Info.plist
-  --build"
+- "./build/script/node-webkit-build.sh --src=dist --name=gisto --win-icon=app/icon.ico --osx-icon=build/resources/osx/gisto.icns --osx-plist=build/resources/osx/Info.plist --build"
 after_success:
-- |-
-  printf "### git commit: $TRAVIS_COMMIT
-  $GISTO_TRAVIS_COMMIT_MESSAGE
-
-  [See on GitHub](https://github.com/Gisto/Gisto/commit/$TRAVIS_COMMIT)" >> ./build/script/TMP/output/_h5ai.header.md
+- printf "### git commit: $TRAVIS_COMMIT\n\n$GISTO_TRAVIS_COMMIT_MESSAGE\n\n[See on GitHub](https://github.com/Gisto/Gisto/commit/$TRAVIS_COMMIT)" >> ./build/script/TMP/output/_h5ai.header.md
 - cd ./build/script/TMP && ln -s $GISTO_DATE_NOW latest
 - mv output $GISTO_DATE_NOW
 - rsync -avz -e ssh $GISTO_DATE_NOW latest $ENV_VAR_GISTO_NIGHTLY_SERVER:/home/gistoapp/public_html/
