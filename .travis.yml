@@ -30,4 +30,4 @@ after_success:
 - "printf \"### git commit: $TRAVIS_COMMIT\n\n$GISTO_TRAVIS_COMMIT_MESSAGE\n\n[See on GitHub](https://github.com/Gisto/Gisto/commit/$TRAVIS_COMMIT)\" >> ./build/script/TMP/output/_h5ai.header.md"
 - cd ./build/script/TMP && ln -s $GISTO_DATE_NOW latest
 - mv output $GISTO_DATE_NOW
-- sshpass -p $ENV_VAR_GISTO_NIGHTLY_SERVER_PASS scp -r $GISTO_DATE_NOW latest $ENV_VAR_GISTO_NIGHTLY_SERVER:/home/gistoapp/public_html/
+- sshpass -p "$ENV_VAR_GISTO_NIGHTLY_SERVER_PASS" scp -r $GISTO_DATE_NOW latest $ENV_VAR_GISTO_NIGHTLY_SERVER:/home/gistoapp/public_html/
