@@ -13,6 +13,7 @@ branches:
 
 install:
 - npm install gulp bower --global
+- sudo apt-get install sshpass
 
 before_script:
 - npm install
