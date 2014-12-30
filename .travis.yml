@@ -23,7 +23,7 @@ branches:
 
 install:
 - npm install gulp bower --global
-- sudo apt-get install sshpass ncftp
+- sudo apt-get install sshpass ncftp rsync
 
 before_script:
 - npm install
@@ -43,4 +43,5 @@ after_success:
 - mv output $GISTO_DATE_NOW
 - ln -s $GISTO_DATE_NOW latest
 - ncftpput -R -v -u "$ENV_VAR_GISTO_NIGHTLY_SERVER_USER" -p "$ENV_VAR_GISTO_NIGHTLY_SERVER_PASS" $ENV_VAR_GISTO_NIGHTLY_SERVER public_html_BKP $GISTO_DATE_NOW
-- "sshpass -p \"$ENV_VAR_GISTO_NIGHTLY_SERVER_PASS\" rsync --progress -avz -e ssh latest $ENV_VAR_GISTO_NIGHTLY_SERVER_USER@$ENV_VAR_GISTO_NIGHTLY_SERVER:/home/gistoapp/public_html_BKP/"
+#- "sshpass -p \"$ENV_VAR_GISTO_NIGHTLY_SERVER_PASS\" rsync --progress -avz -e ssh latest $ENV_VAR_GISTO_NIGHTLY_SERVER_USER@$ENV_VAR_GISTO_NIGHTLY_SERVER:/home/gistoapp/public_html_BKP/"
+- rsync --rsh="sshpass -p $ENV_VAR_GISTO_NIGHTLY_SERVER_PASS ssh -l $ENV_VAR_GISTO_NIGHTLY_SERVER_USER" latest $ENV_VAR_GISTO_NIGHTLY_SERVER_USER@$ENV_VAR_GISTO_NIGHTLY_SERVER:/home/gistoapp/public_html_BKP/
