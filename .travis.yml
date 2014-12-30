@@ -22,7 +22,7 @@ before_script:
 - chmod +x ./build/script/node-webkit-build.sh
 - "export GISTO_TRAVIS_COMMIT_MESSAGE=\"$(git log --format=%B --no-merges -n 1)\""
 - "export GISTO_DATE_NOW=\"$(date +\"%Y%m%d\")\""
-- "echo \"{\"\"client_id\"\":\"\"$ENV_VAR_GISTO_CLIENT_ID\"\",\"\"client_secret\"\":\"\"$ENV_VAR_GISTO_CLIENT_SECRET\"\",\"server_token\"\":\"\"$ENV_VAR_GISTO_SERVER_TOKEN\"}\"\" >> $TRAVIS_BUILD_DIR/dist/config.json"
+- echo "{\"client_id\":\"$ENV_VAR_GISTO_CLIENT_ID\",\"client_secret\":\"$ENV_VAR_GISTO_CLIENT_SECRET\",\"server_token\":\"$ENV_VAR_GISTO_SERVER_TOKEN\"}" >> $TRAVIS_BUILD_DIR/dist/config.json
 
 script:
 - "./build/script/node-webkit-build.sh --src=$TRAVIS_BUILD_DIR/dist --name=gisto --win-icon=$TRAVIS_BUILD_DIR/app/icon.ico --osx-icon=$TRAVIS_BUILD_DIR/build/resources/osx/gisto.icns --osx-plist=$TRAVIS_BUILD_DIR/build/resources/osx/Info.plist --build"
